@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, Input, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { map, Subject } from 'rxjs';
 
@@ -16,7 +16,6 @@ export class ProjectComponent implements OnDestroy {
   constructor(
     public projectsService: ProjectsService,
     private datePipe: DatePipe,
-    private changeDetection: ChangeDetectorRef,
   ) { }
 
   private id$ = new Subject<ProjectId>();
