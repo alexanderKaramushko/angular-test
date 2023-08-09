@@ -13,7 +13,7 @@ export class ProjectsComponent {
   constructor(private router: Router) { }
 
   handleProjectSelect(project: Project) {
-    this.router.navigate(['projects', project.id]);
+    this.router.navigate(['app/projects', project.id]);
   }
 
 }

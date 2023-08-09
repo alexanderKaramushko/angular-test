@@ -10,7 +10,7 @@ export class ProjectsFormComponent {
   constructor(private router: Router) { }
 
   handleJSONInputSave() {
-    this.router.navigateByUrl('projects');
+    this.router.navigateByUrl('app/projects');
   }
 
 }

@@ -3,8 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   {
-    loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule),
     path: '',
+    pathMatch: 'full',
+    redirectTo: '/app/form',
+  },
+  {
+    loadChildren: () => import('./pages/main/main.module').then((m) => m.MainModule),
+    path: 'app',
   },
 ];
 

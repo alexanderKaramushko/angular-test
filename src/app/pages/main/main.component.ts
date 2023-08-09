@@ -30,7 +30,7 @@ export class MainComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   selectTabByUrl(url: string) {
-    const [normalizedUrl] = url.match(/^form|projects/);
+    const [normalizedUrl] = url.match(/^\/app\/form|app\/projects/);
 
     if (normalizedUrl) {
       this.selectTab(normalizedUrl);
