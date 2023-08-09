@@ -1,0 +1,9 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: none;
+}
+
+.project {
+  margin-left: 48px;
+}

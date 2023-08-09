@@ -1,0 +1,10 @@
+<div>
+  <form #jsonForm="ngForm" novalidate>
+    <div>
+      <textarea ngModel name="JSONInput" cols="30" rows="10" required></textarea>
+    </div>
+    <div>
+      <button (click)="saveJSONInput(jsonForm)" [disabled]="jsonForm.invalid">Save</button>
+    </div>
+  </form>
+</div>

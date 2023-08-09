@@ -1,0 +1,57 @@
+<div class="wrapper">
+  <ng-container *ngIf="project">
+    <h2 class="title">{{project.subject}}</h2>
+    <ng-container [ngSwitch]="mode">
+      <ng-container *ngSwitchCase="'view'">
+        <div class="start">
+          <div class="label">Дата начала</div>
+          {{project.startDate | date:"MM.dd.y"}}
+        </div>
+        <div class="end">
+          <div class="label">Дата окончания</div>
+          {{project.endDate | date:"MM.dd.y"}}
+        </div>
+        <div class="author">
+          <div class="label">Автор</div>
+          {{project.createdBy}}
+        </div>
+        <div class="description">
+          <div class="label">Описание</div>
+          {{project.description}}
+        </div>
+        <button (click)="mode = 'edit'">Изменить</button>
+      </ng-container>
+      <ng-container *ngSwitchCase="'edit'">
+        <form class="form" #projectForm="ngForm" novalidate>
+          <div>
+            <label class="label">
+              Дата начала:
+              <input name="startDate" type="date" [(ngModel)]="startDate" required>
+            </label>
+          </div>
+          <div>
+            <label class="label">
+              Дата окончания:
+              <input name="endDate" type="date" [(ngModel)]="endDate" required>
+            </label>
+          </div>
+          <div>
+            <label class="label">
+              Автор:
+              <input name="author" type="text" [(ngModel)]="author" required>
+            </label>
+          </div>
+          <div>
+            <label class="label">
+              Описание:
+              <input name="description" type="text" [(ngModel)]="description" required>
+            </label>
+          </div>
+          <div>
+            <button (click)="saveProject(projectForm)" [disabled]="projectForm.invalid">Сохранить</button>
+          </div>
+        </form>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

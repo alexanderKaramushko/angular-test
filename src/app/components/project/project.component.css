@@ -1,0 +1,40 @@
+.wrapper {
+  display: grid;
+  gap: 28px;
+
+  /* stylelint-disable-next-line declaration-colon-space-after */
+  grid-template-areas:
+    "title title title"
+    "start end author"
+    "description description description";
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+}
+
+.start {
+  grid-area: start;
+}
+
+.end {
+  grid-area: end;
+}
+
+.author {
+  grid-area: author;
+}
+
+.description {
+  grid-area: description;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+form .label {
+  margin: 12px 0;
+}
