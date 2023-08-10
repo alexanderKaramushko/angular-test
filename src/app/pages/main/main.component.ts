@@ -3,6 +3,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { Subscription } from 'rxjs';
 
+import { RoutePath } from 'src/app/core/config';
+
 @Component({
   selector: 'main',
   styleUrls: ['./main.component.css'],
@@ -32,7 +34,9 @@ export class MainComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   selectTabByUrl(url: string) {
-    const [normalizedUrl] = url.match(/^\/app\/form|app\/projects/) ?? [];
+    const [normalizedUrl] = url.match(
+      new RegExp(`${RoutePath.appForm}|${RoutePath.appProjets}`),
+    ) ?? [];
 
     if (normalizedUrl) {
       this.selectTab(normalizedUrl);
