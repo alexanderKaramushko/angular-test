@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { Project, Projects } from 'src/app/core/models/project.model';
 import {
@@ -12,25 +13,23 @@ import {
 })
 export class ProjectsService {
 
-  projects: Project[] = [];
+  projects$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
 
-  // eslint-disable-next-line class-methods-use-this
   saveProjects(projects: string) {
     saveProjectsToLocalStorage(projects);
 
-    // todo убрать сайд-эффект через rxjs
-    this.projects = this.getProjects();
+    this.projects$.next(this.getProjects());
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getProjects() {
     const projects = getProjectsFromLocalStorage();
 
     if (projects) {
-      // todo убрать сайд-эффект через rxjs
-      this.projects = safeParse<Projects>(projects)?.Projects ?? [];
+      const parsedProjects = safeParse<Projects>(projects)?.Projects ?? [];
 
-      return safeParse<Projects>(projects)?.Projects ?? [];
+      this.projects$.next(parsedProjects);
+
+      return parsedProjects;
     }
 
     return [];
@@ -63,8 +62,7 @@ export class ProjectsService {
       Projects: updatedProjects,
     }));
 
-    // todo убрать сайд-эффект через rxjs
-    this.projects = this.getProjects();
+    this.projects$.next(projects);
   }
 
 }
