@@ -1,30 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'project',
   styleUrls: ['./project.component.css'],
   templateUrl: './project.component.html',
 })
-export class ProjectComponent implements OnInit, OnDestroy {
+export class ProjectComponent {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
-
+  @Input()
   id?: ProjectId;
-
-  routerParamsSubscription: Subscription;
-
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      this.id = params.id;
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.routerParamsSubscription) {
-      this.routerParamsSubscription.unsubscribe();
-    }
-  }
 
 }
