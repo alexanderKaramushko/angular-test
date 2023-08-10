@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --open",
-    "test": "ng test weather",
+    "test": "ng test project",
     "build": "ng build"
   },
   "license": "MIT",
