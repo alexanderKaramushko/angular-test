@@ -2,7 +2,7 @@
 <ul>
   <li *ngFor="let project of projectsService.projects; trackBy: trackByProjectId" (click)="selectProject(project)">
     <div class="date">
-      {{project.startDate | date:"dd MMMM y"}} - {{project.endDate | date:"dd MMMM y"}}
+      {{project.startDate | date:"dd MMMM y" | dateRu}} - {{project.endDate | date:"dd MMMM y" | dateRu}}
     </div>
     <div class="title">
       {{project.subject}}
