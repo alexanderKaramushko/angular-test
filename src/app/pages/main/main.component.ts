@@ -18,7 +18,9 @@ export class MainComponent implements AfterViewInit, OnInit, OnDestroy {
   tabs?: TabsetComponent;
 
   handleTabSelect(tab: TabDirective) {
-    this.router.navigateByUrl(tab.id);
+    if (tab.id) {
+      this.router.navigateByUrl(tab.id);
+    }
   }
 
   selectTab(tabId: string) {
@@ -30,7 +32,7 @@ export class MainComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   selectTabByUrl(url: string) {
-    const [normalizedUrl] = url.match(/^\/app\/form|app\/projects/);
+    const [normalizedUrl] = url.match(/^\/app\/form|app\/projects/) ?? [];
 
     if (normalizedUrl) {
       this.selectTab(normalizedUrl);

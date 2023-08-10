@@ -26,11 +26,11 @@ export class ProjectComponent implements OnDestroy {
   private projectSubscription$ = this.project$.subscribe((project) => {
     this.project = project;
 
-    this.startDate = this.datePipe.transform(this.project.startDate, 'y-MM-d');
-    this.endDate = this.datePipe.transform(this.project.endDate, 'y-MM-d');
+    this.startDate = this.datePipe.transform(this.project?.startDate, 'y-MM-d') ?? '';
+    this.endDate = this.datePipe.transform(this.project?.endDate, 'y-MM-d') ?? '';
 
-    this.author = this.project.createdBy;
-    this.description = this.project.description;
+    this.author = this.project?.createdBy ?? '';
+    this.description = this.project?.description ?? '';
   });
 
   project?: Project;
@@ -54,15 +54,20 @@ export class ProjectComponent implements OnDestroy {
   saveProject(form: NgForm) {
     this.mode = 'view';
 
-    this.projectsService.updateProject({
-      createdBy: form.value.author,
-      description: form.value.description,
-      endDate: form.value.endDate,
-      id: this.project.id,
-      startDate: form.value.startDate,
-    });
+    const { id } = this.project ?? {};
 
-    this.project = this.projectsService.getProjectsById(this.project.id);
+    if (id) {
+      this.projectsService.updateProject({
+        createdBy: form.value.author,
+        description: form.value.description,
+        endDate: form.value.endDate,
+        id,
+        startDate: form.value.startDate,
+      });
+
+      this.project = this.projectsService.getProjectsById(id);
+    }
+
   }
 
 }

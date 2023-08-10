@@ -28,9 +28,9 @@ export class ProjectsService {
 
     if (projects) {
       // todo убрать сайд-эффект через rxjs
-      this.projects = safeParse<Projects>(projects).Projects;
+      this.projects = safeParse<Projects>(projects)?.Projects ?? [];
 
-      return safeParse<Projects>(projects).Projects;
+      return safeParse<Projects>(projects)?.Projects ?? [];
     }
 
     return [];
