@@ -13,12 +13,14 @@ import {
 })
 export class ProjectsService {
 
-  projects$: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
+  private projectsSource: BehaviorSubject<Project[]> = new BehaviorSubject<Project[]>([]);
+
+  projects$ = this.projectsSource.asObservable();
 
   saveProjects(projects: string) {
     saveProjectsToLocalStorage(projects);
 
-    this.projects$.next(this.getProjects());
+    this.projectsSource.next(this.getProjects());
   }
 
   getProjects() {
@@ -27,7 +29,7 @@ export class ProjectsService {
     if (projects) {
       const parsedProjects = safeParse<Projects>(projects)?.Projects ?? [];
 
-      this.projects$.next(parsedProjects);
+      this.projectsSource.next(parsedProjects);
 
       return parsedProjects;
     }
@@ -62,7 +64,7 @@ export class ProjectsService {
       Projects: updatedProjects,
     }));
 
-    this.projects$.next(projects);
+    this.projectsSource.next(projects);
   }
 
 }
